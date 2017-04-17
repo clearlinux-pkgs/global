@@ -1,5 +1,5 @@
 PKG_NAME := global
-URL := http://tamacom.com/global/global-6.5.4.tar.gz
-ARCHIVES :=
+URL := https://tamacom.com/global/global-6.5.6.tar.gz
+
 
 include ../common/Makefile.common
