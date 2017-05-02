@@ -6,7 +6,7 @@
 #
 Name     : global
 Version  : 6.5.6
-Release  : 2
+Release  : 3
 URL      : https://tamacom.com/global/global-6.5.6.tar.gz
 Source0  : https://tamacom.com/global/global-6.5.6.tar.gz
 Source99 : https://tamacom.com/global/global-6.5.6.tar.gz.sig
