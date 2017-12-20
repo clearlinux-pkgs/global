@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2AF9977BDA5E41B1 (shigio@gnu.org)
 #
 Name     : global
-Version  : 6.6
-Release  : 5
-URL      : https://tamacom.com/global/global-6.6.tar.gz
-Source0  : https://tamacom.com/global/global-6.6.tar.gz
-Source99 : https://tamacom.com/global/global-6.6.tar.gz.sig
+Version  : 6.6.1
+Release  : 6
+URL      : https://tamacom.com/global/global-6.6.1.tar.gz
+Source0  : https://tamacom.com/global/global-6.6.1.tar.gz
+Source99 : https://tamacom.com/global/global-6.6.1.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -64,14 +64,14 @@ lib components for the global package.
 
 
 %prep
-%setup -q -n global-6.6
+%setup -q -n global-6.6.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513086438
+export SOURCE_DATE_EPOCH=1513807061
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -83,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1513086438
+export SOURCE_DATE_EPOCH=1513807061
 rm -rf %{buildroot}
 %make_install
 
