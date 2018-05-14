@@ -1,5 +1,4 @@
 Configure miss: lid
-Configure miss: a Python interpreter with version >= 2.6
 Configure miss: dld_link in -ldld
 Configure miss: _ prefix in compiled symbols
 Configure miss: sys/dl.h

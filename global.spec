@@ -6,7 +6,7 @@
 #
 Name     : global
 Version  : 6.6.2
-Release  : 10
+Release  : 11
 URL      : https://tamacom.com/global/global-6.6.2.tar.gz
 Source0  : https://tamacom.com/global/global-6.6.2.tar.gz
 Source99 : https://tamacom.com/global/global-6.6.2.tar.gz.sig
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518144663
+export SOURCE_DATE_EPOCH=1526329849
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -83,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1518144663
+export SOURCE_DATE_EPOCH=1526329849
 rm -rf %{buildroot}
 %make_install
 
@@ -171,6 +171,7 @@ rm -rf %{buildroot}
 /usr/share/gtags/jquery/jquery.treeview.js
 /usr/share/gtags/jscode_suggest
 /usr/share/gtags/jscode_treeview
+/usr/share/gtags/script/__pycache__/pygments_parser.cpython-36.pyc
 /usr/share/gtags/script/elvis-global
 /usr/share/gtags/script/global-client
 /usr/share/gtags/script/gtags-client
