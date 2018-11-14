@@ -6,17 +6,18 @@
 #
 Name     : global
 Version  : 6.6.2
-Release  : 11
-URL      : https://tamacom.com/global/global-6.6.2.tar.gz
-Source0  : https://tamacom.com/global/global-6.6.2.tar.gz
-Source99 : https://tamacom.com/global/global-6.6.2.tar.gz.sig
+Release  : 12
+URL      : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
-Requires: global-bin
-Requires: global-lib
-Requires: global-data
-Requires: global-doc
+Requires: global-bin = %{version}-%{release}
+Requires: global-data = %{version}-%{release}
+Requires: global-lib = %{version}-%{release}
+Requires: global-license = %{version}-%{release}
+Requires: global-man = %{version}-%{release}
 BuildRequires : emacs
 BuildRequires : ncurses-dev
 BuildRequires : sqlite-autoconf-dev
@@ -32,7 +33,9 @@ ___________________________________
 %package bin
 Summary: bin components for the global package.
 Group: Binaries
-Requires: global-data
+Requires: global-data = %{version}-%{release}
+Requires: global-license = %{version}-%{release}
+Requires: global-man = %{version}-%{release}
 
 %description bin
 bin components for the global package.
@@ -49,6 +52,7 @@ data components for the global package.
 %package doc
 Summary: doc components for the global package.
 Group: Documentation
+Requires: global-man = %{version}-%{release}
 
 %description doc
 doc components for the global package.
@@ -57,10 +61,27 @@ doc components for the global package.
 %package lib
 Summary: lib components for the global package.
 Group: Libraries
-Requires: global-data
+Requires: global-data = %{version}-%{release}
+Requires: global-license = %{version}-%{release}
 
 %description lib
 lib components for the global package.
+
+
+%package license
+Summary: license components for the global package.
+Group: Default
+
+%description license
+license components for the global package.
+
+
+%package man
+Summary: man components for the global package.
+Group: Default
+
+%description man
+man components for the global package.
 
 
 %prep
@@ -71,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526329849
+export SOURCE_DATE_EPOCH=1542160325
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -83,8 +104,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1526329849
+export SOURCE_DATE_EPOCH=1542160325
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/global
+cp COPYING %{buildroot}/usr/share/package-licenses/global/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/global/COPYING.LIB
+cp LICENSE %{buildroot}/usr/share/package-licenses/global/LICENSE
+cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/libltdl_COPYING.LIB
 %make_install
 
 %files
@@ -171,7 +197,6 @@ rm -rf %{buildroot}
 /usr/share/gtags/jquery/jquery.treeview.js
 /usr/share/gtags/jscode_suggest
 /usr/share/gtags/jscode_treeview
-/usr/share/gtags/script/__pycache__/pygments_parser.cpython-36.pyc
 /usr/share/gtags/script/elvis-global
 /usr/share/gtags/script/global-client
 /usr/share/gtags/script/gtags-client
@@ -183,10 +208,8 @@ rm -rf %{buildroot}
 /usr/share/gtags/vim74-gtags-cscope.patch
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/info/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man5/*
 
 %files lib
 %defattr(-,root,root,-)
@@ -194,3 +217,21 @@ rm -rf %{buildroot}
 /usr/lib64/gtags/pygments-parser.so
 /usr/lib64/gtags/universal-ctags.so
 /usr/lib64/gtags/user-custom.so
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/global/COPYING
+/usr/share/package-licenses/global/COPYING.LIB
+/usr/share/package-licenses/global/LICENSE
+/usr/share/package-licenses/global/libltdl_COPYING.LIB
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/global.1
+/usr/share/man/man1/globash.1
+/usr/share/man/man1/gozilla.1
+/usr/share/man/man1/gtags-cscope.1
+/usr/share/man/man1/gtags.1
+/usr/share/man/man1/htags-server.1
+/usr/share/man/man1/htags.1
+/usr/share/man/man5/gtags.conf.5
