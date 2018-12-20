@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2AF9977BDA5E41B1 (shigio@gnu.org)
 #
 Name     : global
-Version  : 6.6.2
-Release  : 12
-URL      : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/global/global-6.6.2.tar.gz.sig
+Version  : 6.6.3
+Release  : 13
+URL      : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -85,14 +85,14 @@ man components for the global package.
 
 
 %prep
-%setup -q -n global-6.6.2
+%setup -q -n global-6.6.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542160325
+export SOURCE_DATE_EPOCH=1545344908
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -104,7 +104,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542160325
+export SOURCE_DATE_EPOCH=1545344908
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
 cp COPYING %{buildroot}/usr/share/package-licenses/global/COPYING
