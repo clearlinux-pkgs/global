@@ -6,7 +6,7 @@
 #
 Name     : global
 Version  : 6.6.3
-Release  : 13
+Release  : 14
 URL      : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz.sig
