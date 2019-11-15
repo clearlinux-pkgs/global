@@ -6,15 +6,16 @@
 #
 Name     : global
 Version  : 6.6.3
-Release  : 16
+Release  : 17
 URL      : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz.sig
+Source1 : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: global-bin = %{version}-%{release}
 Requires: global-data = %{version}-%{release}
+Requires: global-info = %{version}-%{release}
 Requires: global-lib = %{version}-%{release}
 Requires: global-license = %{version}-%{release}
 Requires: global-man = %{version}-%{release}
@@ -35,7 +36,6 @@ Summary: bin components for the global package.
 Group: Binaries
 Requires: global-data = %{version}-%{release}
 Requires: global-license = %{version}-%{release}
-Requires: global-man = %{version}-%{release}
 
 %description bin
 bin components for the global package.
@@ -49,13 +49,12 @@ Group: Data
 data components for the global package.
 
 
-%package doc
-Summary: doc components for the global package.
-Group: Documentation
-Requires: global-man = %{version}-%{release}
+%package info
+Summary: info components for the global package.
+Group: Default
 
-%description doc
-doc components for the global package.
+%description info
+info components for the global package.
 
 
 %package lib
@@ -86,31 +85,40 @@ man components for the global package.
 
 %prep
 %setup -q -n global-6.6.3
+cd %{_builddir}/global-6.6.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1545344908
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573791701
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1545344908
+export SOURCE_DATE_EPOCH=1573791701
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
-cp COPYING %{buildroot}/usr/share/package-licenses/global/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/global/COPYING.LIB
-cp LICENSE %{buildroot}/usr/share/package-licenses/global/LICENSE
-cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/libltdl_COPYING.LIB
+cp %{_builddir}/global-6.6.3/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/global-6.6.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/global-6.6.3/LICENSE %{buildroot}/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
+cp %{_builddir}/global-6.6.3/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 
 %files
@@ -207,9 +215,9 @@ cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/libltdl_CO
 /usr/share/gtags/style.css
 /usr/share/gtags/vim74-gtags-cscope.patch
 
-%files doc
+%files info
 %defattr(0644,root,root,0755)
-%doc /usr/share/info/*
+/usr/share/info/global.info
 
 %files lib
 %defattr(-,root,root,-)
@@ -220,10 +228,10 @@ cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/libltdl_CO
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/global/COPYING
-/usr/share/package-licenses/global/COPYING.LIB
-/usr/share/package-licenses/global/LICENSE
-/usr/share/package-licenses/global/libltdl_COPYING.LIB
+/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
+/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
 
 %files man
 %defattr(0644,root,root,0755)
