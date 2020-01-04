@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2AF9977BDA5E41B1 (shigio@gnu.org)
 #
 Name     : global
-Version  : 6.6.3
-Release  : 17
-URL      : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz
-Source1 : https://mirrors.kernel.org/gnu/global/global-6.6.3.tar.gz.sig
+Version  : 6.6.4
+Release  : 18
+URL      : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -84,15 +84,15 @@ man components for the global package.
 
 
 %prep
-%setup -q -n global-6.6.3
-cd %{_builddir}/global-6.6.3
+%setup -q -n global-6.6.4
+cd %{_builddir}/global-6.6.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573791701
+export SOURCE_DATE_EPOCH=1578179110
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -112,13 +112,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573791701
+export SOURCE_DATE_EPOCH=1578179110
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
-cp %{_builddir}/global-6.6.3/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/global-6.6.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
-cp %{_builddir}/global-6.6.3/LICENSE %{buildroot}/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
-cp %{_builddir}/global-6.6.3/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/global-6.6.4/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/global-6.6.4/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/global-6.6.4/LICENSE %{buildroot}/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
+cp %{_builddir}/global-6.6.4/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 
 %files
