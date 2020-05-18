@@ -6,7 +6,7 @@
 #
 Name     : global
 Version  : 6.6.4
-Release  : 18
+Release  : 19
 URL      : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz.sig
@@ -22,6 +22,7 @@ Requires: global-man = %{version}-%{release}
 BuildRequires : emacs
 BuildRequires : ncurses-dev
 BuildRequires : sqlite-autoconf-dev
+Patch1: global-gcc10.patch
 
 %description
 ___________________________________
@@ -86,20 +87,21 @@ man components for the global package.
 %prep
 %setup -q -n global-6.6.4
 cd %{_builddir}/global-6.6.4
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578179110
+export SOURCE_DATE_EPOCH=1589818396
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -112,7 +114,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1578179110
+export SOURCE_DATE_EPOCH=1589818396
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
 cp %{_builddir}/global-6.6.4/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
