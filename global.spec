@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2AF9977BDA5E41B1 (shigio@gnu.org)
 #
 Name     : global
-Version  : 6.6.4
-Release  : 19
-URL      : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.4.tar.gz.sig
+Version  : 6.6.7
+Release  : 20
+URL      : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -22,7 +22,6 @@ Requires: global-man = %{version}-%{release}
 BuildRequires : emacs
 BuildRequires : ncurses-dev
 BuildRequires : sqlite-autoconf-dev
-Patch1: global-gcc10.patch
 
 %description
 ___________________________________
@@ -85,24 +84,23 @@ man components for the global package.
 
 
 %prep
-%setup -q -n global-6.6.4
-cd %{_builddir}/global-6.6.4
-%patch1 -p1
+%setup -q -n global-6.6.7
+cd %{_builddir}/global-6.6.7
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1589818396
+export SOURCE_DATE_EPOCH=1627015890
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -111,16 +109,15 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1589818396
+export SOURCE_DATE_EPOCH=1627015890
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
-cp %{_builddir}/global-6.6.4/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/global-6.6.4/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
-cp %{_builddir}/global-6.6.4/LICENSE %{buildroot}/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
-cp %{_builddir}/global-6.6.4/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/global-6.6.7/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/global-6.6.7/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/global-6.6.7/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 
 %files
@@ -231,7 +228,6 @@ cp %{_builddir}/global-6.6.4/libltdl/COPYING.LIB %{buildroot}/usr/share/package-
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
-/usr/share/package-licenses/global/39445154fb54acc4b79d8145dd835e7e0cdbd3d7
 /usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 /usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
 
