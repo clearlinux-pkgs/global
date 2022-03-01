@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2AF9977BDA5E41B1 (shigio@gnu.org)
 #
 Name     : global
-Version  : 6.6.7
-Release  : 20
-URL      : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.7.tar.gz.sig
+Version  : 6.6.8
+Release  : 21
+URL      : https://mirrors.kernel.org/gnu/global/global-6.6.8.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/global/global-6.6.8.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/global/global-6.6.8.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -84,15 +84,15 @@ man components for the global package.
 
 
 %prep
-%setup -q -n global-6.6.7
-cd %{_builddir}/global-6.6.7
+%setup -q -n global-6.6.8
+cd %{_builddir}/global-6.6.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1627015890
+export SOURCE_DATE_EPOCH=1646120232
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -112,12 +112,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1627015890
+export SOURCE_DATE_EPOCH=1646120232
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/global
-cp %{_builddir}/global-6.6.7/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/global-6.6.7/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
-cp %{_builddir}/global-6.6.7/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/global-6.6.8/COPYING %{buildroot}/usr/share/package-licenses/global/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/global-6.6.8/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/global-6.6.8/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/global/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 
 %files
@@ -147,6 +147,7 @@ cp %{_builddir}/global-6.6.7/libltdl/COPYING.LIB %{buildroot}/usr/share/package-
 /usr/share/gtags/NEWS
 /usr/share/gtags/PLUGIN_HOWTO
 /usr/share/gtags/PLUGIN_HOWTO.pygments
+/usr/share/gtags/PLUGIN_HOWTO.reference
 /usr/share/gtags/README
 /usr/share/gtags/README.PATCHES
 /usr/share/gtags/SERVERSIDE_HOWTO
@@ -212,6 +213,7 @@ cp %{_builddir}/global-6.6.7/libltdl/COPYING.LIB %{buildroot}/usr/share/package-
 /usr/share/gtags/script/maps2conf.pl
 /usr/share/gtags/script/pygments_parser.py
 /usr/share/gtags/style.css
+/usr/share/gtags/uctags-scheme.c-diff
 /usr/share/gtags/vim74-gtags-cscope.patch
 
 %files info
