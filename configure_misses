@@ -1,14 +1,30 @@
 Configure miss: _ prefix in compiled symbols
+Configure miss: _ prefix in compiled symbols
+Configure miss: dld.h
 Configure miss: dld.h
 Configure miss: dld_link in -ldld
+Configure miss: dld_link in -ldld
+Configure miss: exuberant ctags program
 Configure miss: exuberant ctags program
 Configure miss: fixkeypad
+Configure miss: fixkeypad
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: home-etc support
 Configure miss: home-etc support
 Configure miss: lid
+Configure miss: lid
 Configure miss: mach-o/dyld.h
-Configure miss: pread/pwrite support
+Configure miss: mach-o/dyld.h
+Configure miss: sighandler_t
 Configure miss: sighandler_t
 Configure miss: sqlite3 support
+Configure miss: sqlite3 support
+Configure miss: sys/dl.h
 Configure miss: sys/dl.h
 Configure miss: universal ctags program
+Configure miss: universal ctags program
 Configure miss: whether we are using the GNU DJGPP compiler
+Configure miss: whether we are using the GNU DJGPP compiler
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
